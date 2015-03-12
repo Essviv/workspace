@@ -2,7 +2,6 @@ ${testBean.url}
 ${testBean.name}
 ${testBean.testMethod()}
 
-
 <#list map?keys as key>
 		${key}: <#t>
 		<#if key != "obj">
