@@ -38,6 +38,7 @@ $RECYCLE.BIN/
 .classpath
 
 # Directories potentially created on remote AFP share
+META-INF
 Servers
 target
 .settings
