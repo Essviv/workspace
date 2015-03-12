@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- 标识可以使用标签来定义注入 -->
+	<!-- <context:annotation-config/> -->
+	<context:annotation-config />
+	
+	<bean id="helloWorld" 
+		class="com.cmcc.sunyiwei.HelloWorld"
+		init-method="init"
+		destroy-method="destroy">
+		
+		<!-- scope="singleton"> -->
+		<property name="message" value="nihao" />
+	</bean>
+	
+	<bean class="com.cmcc.sunyiwei.PostProcessor" />
+	
+	<bean name="anotherBean" class="com.cmcc.sunyiwei.AnotherBean" />
+	
+	<bean name="parentBean" class="com.cmcc.sunyiwei.ParentBean">
+		<property name="message1" value="parent_message1" />
+		<property name="message2" value="parent_message2" />
+	</bean>
+	
+	<bean name="childBean" class="com.cmcc.sunyiwei.ChildBean" parent="parentBean">
+		<property name="message1" value="child_message1" />
+		<property name="message3" value="child_message3" />
+	</bean>
+	
+	<bean name="textEditor" class="com.cmcc.sunyiwei.TextEditor">
+		<!-- <property name="spellCheckor" ref="spellCheckor" />
+		<constructor-arg name="" value="" /> -->
+	</bean>
+			
+	<bean name="spellCheckor" class="com.cmcc.sunyiwei.SpellCheckor" />
+	<!-- <bean name="spellCheckor_1" class="com.cmcc.sunyiwei.SpellCheckor" /> -->
+	
+	<bean name="javaCollection" class="com.cmcc.sunyiwei.JavaCollection">
+		<property name="listData">
+			<list>
+				<value>India</value>
+				<value>China</value>
+				<value>America</value>
+				<value>Canada</value>
+			</list>
+		</property>
+		
+		<property name="setData">
+			<set>
+				<value>Euro</value>
+				<value>Africa</value>
+				<value>Asia</value>
+				<value>South Africa</value>
+			</set>
+		</property>
+		
+		<property name="mapData">
+			<map>
+				<entry key="1" value="First" />
+				<entry key="2" value="Second" />
+				<entry key="3" value="Third" />
+			</map>
+		</property>
+		
+		<property name="propsData">
+			<props>
+				<prop key="1">one</prop>
+				<prop key="2">two</prop>
+				<prop key="3">three</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean name="profile" class="com.cmcc.sunyiwei.Profile" />
+	
+	<bean name="sunyiwei" class="com.cmcc.sunyiwei.Student">
+		<property name="age" value="10" />
+		<property name="name" value="sunyiwei" />
+	</bean>
+	
+	<bean name="student" class="com.cmcc.sunyiwei.Student" />
+	
+</beans>

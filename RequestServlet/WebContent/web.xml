@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web_app version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee">
+
+	<servlet>
+		<servlet-name>RequestServlet</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.RequestServlet</servlet-class>
+	</servlet>	
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/RequestServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TestInitParamServlet</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.TestInitParamServlet</servlet-class>
+		<init-param>
+			<param-name>sunyiwei</param-name>
+			<param-value>syw514912821</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>Lisa</param-name>
+			<param-value>lisaFly</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>TestInitParamServlet</servlet-name>
+		<url-pattern>/TestInitParamServlet</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>upload file</param-name>
+		<param-value>attachment</param-value></context-param>
+		
+<!-- TestRIServlet -->
+	<servlet>
+		<servlet-name>TestRIServlet</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.TestRIServlet</servlet-class>
+	</servlet>	
+	
+	<servlet-mapping>
+		<servlet-name>TestRIServlet</servlet-name>
+		<url-pattern>/TestRIServlet</url-pattern>
+	</servlet-mapping>
+	
+	<env-entry>
+		<env-entry-name>hello</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value> Hello world! </env-entry-value>
+	</env-entry>
+<!-- TestRIServlet -->
+</web_app>
