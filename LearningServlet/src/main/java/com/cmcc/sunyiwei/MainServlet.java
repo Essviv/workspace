@@ -3,25 +3,23 @@
  * @Package:com.cmcc.sunyiwei 
  * @Description: TODO
  * @author: sunyiwei  
- * @date:2015Äê3ÔÂ10ÈÕ ÏÂÎç9:26:56 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:26:56 
  * @version V1.0   
  */
 package com.cmcc.sunyiwei;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -33,7 +31,7 @@ import com.google.zxing.common.BitMatrix;
  * @ClassName: MainServlet
  * @Description: TODO
  * @author: sunyiwei
- * @date:2015Äê3ÔÂ10ÈÕ ÏÂÎç9:26:56
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:26:56
  */
 public class MainServlet extends HttpServlet {
 
@@ -44,7 +42,38 @@ public class MainServlet extends HttpServlet {
 		// testDispatch(req, resp);
 //		testQRCode(req, resp);
 //		testServletConfig(req, resp);
-		testContextParams(req, resp);
+//		testContextParams(req, resp);
+//		testCookie(req, resp);
+		testSessionListener(req, resp);
+	}
+	
+	private void testSessionListener(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.setContentType("text/html; charset=utf-8");
+		
+		request.getSession().setAttribute("author", "sunyiwei");
+		request.getSession().setAttribute("author", "sunyiwei");
+		request.getSession().setAttribute("beanToBind", new BeanBindToSession("beanBindToSessionObject"));
+		request.getSession().removeAttribute("author");
+		request.getSession().removeAttribute("beanToBind");
+		
+		HttpSession session = request.getSession();
+	}
+	
+	private void testCookie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.setContentType("text/html; charset=utf-8");
+		
+		Cookie authorCookie = new Cookie("author", "sunyiwei");
+		response.addCookie(authorCookie);
+		
+		Map<String, String>map = new LinkedHashMap<String, String>();
+		
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			map.put(cookie.getName(), cookie.getValue());
+		}
+	
+		request.setAttribute("map", map);
+		request.getRequestDispatcher("/cookies.jsp").forward(request, response);
 	}
 
 	private void testContextParams(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -86,7 +115,7 @@ public class MainServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("image/jpg");
 
-		// Éú³É¶þÎ¬Âë
+		// ï¿½ï¿½ï¿½É¶ï¿½Î¬ï¿½ï¿½
 		String szName = req.getParameter("name");
 		String szAge = req.getParameter("age");
 		String content = "com.cmcc.sunyiwei?" + "name=" + szName + "&age="
