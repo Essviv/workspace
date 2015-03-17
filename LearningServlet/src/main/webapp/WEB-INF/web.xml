@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
-	<display-name>Archetype Created Web Application</display-name>
-
-	<servlet>
-		<servlet-name>mainServlet</servlet-name>
-		<servlet-class>com.cmcc.sunyiwei.MainServlet</servlet-class>
-		<init-param>
-			<param-name>author</param-name>
-			<param-value>sunyiwei</param-value>
-		</init-param>
-
-		<init-param>
-			<param-name>description</param-name>
-			<param-value>现在很晚了</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet>
-		<servlet-name>redirectServlet</servlet-name>
-		<servlet-class>com.cmcc.sunyiwei.RedirectServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>mainServlet</servlet-name>
-		<url-pattern>/info.html</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>redirectServlet</servlet-name>
-		<url-pattern>/redirect.html</url-pattern>
-	</servlet-mapping>
-
-	<context-param>
-		<param-name>email</param-name>
-		<param-value>sunyiwei@chinamobile.com</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>name</param-name>
-		<param-value>sunyiwei</param-value>
-	</context-param>
-
-	<listener>
-		<listener-class>com.cmcc.sunyiwei.MyContextListener</listener-class>
-		<listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
-	</listener>
-	
-	<session-config>
-		<session-timeout>15</session-timeout>
-	</session-config>	
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>mainServlet</servlet-name>
+    <servlet-class>com.cmcc.sunyiwei.MainServlet</servlet-class>
+    <init-param>
+      <param-name>author</param-name>
+      <param-value>sunyiwei</param-value>
+    </init-param>
+    <init-param>
+      <param-name>description</param-name>
+      <param-value>现在很晚了</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>redirectServlet</servlet-name>
+    <servlet-class>com.cmcc.sunyiwei.RedirectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mainServlet</servlet-name>
+    <url-pattern>/info.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>redirectServlet</servlet-name>
+    <url-pattern>/redirect.html</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <param-name>email</param-name>
+    <param-value>sunyiwei@chinamobile.com</param-value>
+  </context-param>
+  <context-param>
+    <param-name>name</param-name>
+    <param-value>sunyiwei</param-value>
+  </context-param>
+  <listener>
+    <listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.cmcc.sunyiwei.SessionAttributeListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>CookieExample</display-name>
+    <servlet-name>CookieExample</servlet-name>
+    <servlet-class>com.cmcc.sunyiwei.CookieExample</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieExample</servlet-name>
+    <url-pattern>/processCookieExample.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HobbyPage</display-name>
+    <servlet-name>HobbyPage</servlet-name>
+    <servlet-class>com.cmcc.sunyiwei.HobbyPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HobbyPage</servlet-name>
+    <url-pattern>/hobbyPage.do</url-pattern>
+  </servlet-mapping>
 </web-app>

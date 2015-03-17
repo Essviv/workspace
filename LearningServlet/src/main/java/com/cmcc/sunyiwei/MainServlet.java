@@ -11,6 +11,7 @@ package com.cmcc.sunyiwei;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -43,7 +44,37 @@ public class MainServlet extends HttpServlet {
 		// testServletConfig(req, resp);
 		// testContextParams(req, resp);
 //		testSessionId(req, resp);
-		testCookies(req, resp);
+//		testCookies(req, resp);
+		testSessionListener(req, resp);
+	}
+	
+	private void testSessionListener(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.setContentType("text/html; charset=utf-8");
+		
+		request.getSession().setAttribute("author", "sunyiwei");
+		request.getSession().setAttribute("author", "sunyiwei");
+		request.getSession().setAttribute("beanToBind", new BeanBindToSession("beanBindToSessionObject"));
+		request.getSession().removeAttribute("author");
+		request.getSession().removeAttribute("beanToBind");
+		
+		HttpSession session = request.getSession();
+	}
+	
+	private void testCookie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.setContentType("text/html; charset=utf-8");
+		
+		Cookie authorCookie = new Cookie("author", "sunyiwei");
+		response.addCookie(authorCookie);
+		
+		Map<String, String>map = new LinkedHashMap<String, String>();
+		
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			map.put(cookie.getName(), cookie.getValue());
+		}
+	
+		request.setAttribute("map", map);
+		request.getRequestDispatcher("/cookies.jsp").forward(request, response);
 	}
 
 	private void testCookies(HttpServletRequest request,
