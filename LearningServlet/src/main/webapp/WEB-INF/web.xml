@@ -45,4 +45,8 @@
 		<listener-class>com.cmcc.sunyiwei.MyContextListener</listener-class>
 		<listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
 	</listener>
+	
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>	
 </web-app>

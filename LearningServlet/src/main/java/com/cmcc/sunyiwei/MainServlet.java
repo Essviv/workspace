@@ -3,25 +3,22 @@
  * @Package:com.cmcc.sunyiwei 
  * @Description: TODO
  * @author: sunyiwei  
- * @date:2015Äê3ÔÂ10ÈÕ ÏÂÎç9:26:56 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:26:56 
  * @version V1.0   
  */
 package com.cmcc.sunyiwei;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -33,7 +30,7 @@ import com.google.zxing.common.BitMatrix;
  * @ClassName: MainServlet
  * @Description: TODO
  * @author: sunyiwei
- * @date:2015Äê3ÔÂ10ÈÕ ÏÂÎç9:26:56
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:26:56
  */
 public class MainServlet extends HttpServlet {
 
@@ -42,36 +39,75 @@ public class MainServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// testSendRedirect(req, resp);
 		// testDispatch(req, resp);
-//		testQRCode(req, resp);
-//		testServletConfig(req, resp);
-		testContextParams(req, resp);
+		// testQRCode(req, resp);
+		// testServletConfig(req, resp);
+		// testContextParams(req, resp);
+//		testSessionId(req, resp);
+		testCookies(req, resp);
 	}
 
-	private void testContextParams(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		Author author = (Author)getServletContext().getAttribute("author");
+	private void testCookies(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException {
+		response.setContentType("text/html; charset=utf8");
+		
+		Cookie cookie = new Cookie("author", "sunyiwei");
+		response.addCookie(cookie);
+		response.getWriter().println("ï¿½é¿´responseï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...");
+	}
+
+	private void testSessionId(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException {
+		response.setContentType("text/html; charset=utf8");
+
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(2);
+
+		if (session.isNew()) {
+			response.getWriter().println("ï¿½Ï¸ï¿½ï¿½á»°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ»á»°ï¿½ï¿½");
+		} else {
+			response.getWriter().println("ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Ç¸ï¿½ï¿½á»°Å¶~");
+		}
+		// request.getRequestDispatcher(response.encodeURL("/context.jsp"))
+		// .forward(request, response);
+		// response.sendRedirect(response.encodeURL("context.jsp"));
+		// response.sendRedirect(response.encodeRedirectURL("context.jsp"));
+		// if(session.isNew()){
+		// response.getWriter().println("ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½Î·ï¿½ï¿½ï¿½...");
+		// }else{
+		// response.getWriter().println("ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½Ê¹ï¿½...");
+		// }
+	}
+
+	private void testContextParams(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		Author author = (Author) getServletContext().getAttribute("author");
 		request.setAttribute("author", author);
 		request.getRequestDispatcher("/context.jsp").forward(request, response);
 	}
-	
-	private void testServletConfig(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+	private void testServletConfig(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		Map initParams = new HashMap<String, String>();
 		Enumeration enumeration = getInitParameterNames();
-		while(enumeration.hasMoreElements()){
-			String szKeyString = (String)enumeration.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String szKeyString = (String) enumeration.nextElement();
 			initParams.put(szKeyString, getInitParameter(szKeyString));
 		}
-		
+
 		Map contextParams = new HashMap<String, String>();
-		Enumeration contextEnumeration = getServletContext().getInitParameterNames();
-		while(contextEnumeration.hasMoreElements()){
-			String szContextKey = (String)contextEnumeration.nextElement();
-			contextParams.put(szContextKey, getServletContext().getInitParameter(szContextKey));
+		Enumeration contextEnumeration = getServletContext()
+				.getInitParameterNames();
+		while (contextEnumeration.hasMoreElements()) {
+			String szContextKey = (String) contextEnumeration.nextElement();
+			contextParams.put(szContextKey, getServletContext()
+					.getInitParameter(szContextKey));
 		}
 		request.setAttribute("servletData", initParams);
-		request.setAttribute("contextData", contextParams);		
-		request.getRequestDispatcher("/ConfigParams.jsp").forward(request, response);
+		request.setAttribute("contextData", contextParams);
+		request.getRequestDispatcher("/ConfigParams.jsp").forward(request,
+				response);
 	}
-	
+
 	private void testDispatch(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -86,7 +122,7 @@ public class MainServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("image/jpg");
 
-		// Éú³É¶þÎ¬Âë
+		// ï¿½ï¿½ï¿½É¶ï¿½Î¬ï¿½ï¿½
 		String szName = req.getParameter("name");
 		String szAge = req.getParameter("age");
 		String content = "com.cmcc.sunyiwei?" + "name=" + szName + "&age="
