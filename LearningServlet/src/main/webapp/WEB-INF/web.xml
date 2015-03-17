@@ -33,15 +33,12 @@
     <param-name>name</param-name>
     <param-value>sunyiwei</param-value>
   </context-param>
-  
   <listener>
     <listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
   </listener>
-  
   <listener>
     <listener-class>com.cmcc.sunyiwei.SessionAttributeListener</listener-class>
   </listener>
-  
   <servlet>
     <description></description>
     <display-name>CookieExample</display-name>
@@ -51,5 +48,15 @@
   <servlet-mapping>
     <servlet-name>CookieExample</servlet-name>
     <url-pattern>/processCookieExample.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HobbyPage</display-name>
+    <servlet-name>HobbyPage</servlet-name>
+    <servlet-class>com.cmcc.sunyiwei.HobbyPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HobbyPage</servlet-name>
+    <url-pattern>/hobbyPage.do</url-pattern>
   </servlet-mapping>
 </web-app>
