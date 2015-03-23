@@ -32,10 +32,10 @@
 </#macro>
 
 <#-- 得到表格体内容 -->
-<#macro getContentBody dataList contentProvider>
+<#macro getContentBody dataList rowContentProvider>
 	<#list dataList as data>
 		<tr>
-			${contentProvider.getString(data)}
+			${rowContentProvider.getString(data)}
 		</tr><br />
 	</#list>
 </#macro>

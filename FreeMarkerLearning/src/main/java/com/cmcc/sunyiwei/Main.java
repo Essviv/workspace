@@ -13,11 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.cmcc.vrp.util.HrefObject;
-import com.cmcc.vrp.util.ICellContentProvider;
 import com.cmcc.vrp.util.PageResult;
-import com.cmcc.vrp.util.RowContentProvider;
-import com.cmcc.vrp.util.TableObject;
 
+import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -28,16 +26,20 @@ public class Main {
 			TemplateException {
 		// testPageResult();
 		// testMethod();
-		// testAdminView();
-		testTableListObject();
+		 testAdminView();
+//		testTableListObject();
 		// testMapToQueryString();
 		// testGetHref();
+//		System.out.println(new Administer().getClass().getName());
+//		System.out.println(new Administer().getClass().getSimpleName());
 	}
 
 	private static void testAdminView() throws IOException, TemplateException {
 		Configuration configuration = new Configuration();
-		configuration.setDirectoryForTemplateLoading(new File(
-				"src/main/resources/"));
+//		configuration.setDirectoryForTemplateLoading(new File(
+//				"src/main/resources/"));
+		configuration.setClassForTemplateLoading(Main.class, "/");
+		
 		configuration.setDefaultEncoding("UTF-8");
 		configuration
 				.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
@@ -116,7 +118,7 @@ public class Main {
 		headerList.add("用户名");
 		headerList.add("手机号");
 		headerList.add("邮箱");
-		headerList.add("");
+		headerList.add("其它");
 		tableObject.setHeaderTextList(headerList);
 
 		List<Administer> administers = new ArrayList<Administer>();
@@ -129,45 +131,11 @@ public class Main {
 		}
 		tableObject.setDataList(administers);
 
-		RowContentProvider<Administer> rowContentProvider = new RowContentProvider<Administer>();
-		List<ICellContentProvider<Administer>> columnContentProviders = new ArrayList<ICellContentProvider<Administer>>();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("url", "http://www.baidu.com");
+		params.put("text", "测试");
 		
-		columnContentProviders.add(new ICellContentProvider<Administer>() {
-			public String getString(Administer t) {
-				return t.getUserName();
-			}
-		});
-		
-		columnContentProviders.add(new ICellContentProvider<Administer>() {
-			public String getString(Administer t) {
-				return t.getMobilePhone();
-			}
-		});
-		
-		columnContentProviders.add(new ICellContentProvider<Administer>() {
-			public String getString(Administer t) {
-				return t.getEmail();
-			}
-		});
-		
-		columnContentProviders.add(new ICellContentProvider<Administer>() {
-			public String getString(Administer t) {
-				Map<String, Object> queryParam = new HashMap<String, Object>();
-				queryParam.put("author", "sunyiwei");
-				queryParam.put("id", 50);
-
-				HrefObject hrefObject = new HrefObject();
-				hrefObject.setCallback("http://www.baidu.com");
-				hrefObject.setText("Click me");
-				hrefObject.setQueryCriteria(queryParam);
-				
-				return hrefObject.toString();
-			}
-		});
-		
-		
-		rowContentProvider.setColumnContentProviders(columnContentProviders);
-
+		IRowContentProvider<Administer> rowContentProvider = new RowContentProvider<Administer>(params, "admin.ftl");
 		tableObject.setRowContentProvider(rowContentProvider);
 
 		// 设置dataModel
