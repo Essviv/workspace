@@ -7,12 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Name: ${pageScope.my} <br />
-	Name: ${my}<br />
-	Name: ${param.my}<br />
-	Name: ${requestScope.my}<br />
-	Email: ${param.email }<br />
-	Hobby: ${paramValues.hobby[0] }<br />
-	Hobby: ${paramValues.hobby[1] }<br />
+	<%-- Author: <%= request.getAttribute("author") %> --%>
+	<jsp:useBean id="author" 
+				class="com.cmcc.sunyiwei.Author"
+				scope="request">
+		<jsp:setProperty property="*" name="author"/>
+	</jsp:useBean>
+	
+	Name: <jsp:getProperty property="name" name="author"/><br />
+	Email: <jsp:getProperty property="email" name="author"/>
 </body>
 </html>

@@ -45,7 +45,27 @@ public class MainServlet extends HttpServlet {
 		// testContextParams(req, resp);
 //		testSessionId(req, resp);
 //		testCookies(req, resp);
-		testSessionListener(req, resp);
+//		testSessionListener(req, resp);
+//		testScriplessJSP(req, resp);
+		testEL(req, resp);
+	}
+	
+	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		req.setAttribute("my", "patrick");
+		System.out.println("My = patrick");
+		req.getRequestDispatcher("ELTest.jsp").forward(req, resp);
+	}
+	
+	private void testScriplessJSP(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+//		Author author = new Author();
+//		author.setName("patrick");
+//		
+//		req.setAttribute("author", author);
+		Person person = new Author();
+		person.setGender("Male");
+		req.setAttribute("person", person);
+		
+		req.getRequestDispatcher("scriptless.jsp").forward(req, resp);
 	}
 	
 	private void testSessionListener(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

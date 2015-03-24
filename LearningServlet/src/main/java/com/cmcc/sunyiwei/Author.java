@@ -3,7 +3,7 @@
  * @Package:com.cmcc.sunyiwei 
  * @Description: TODO
  * @author: sunyiwei  
- * @date:2015Äê3ÔÂ11ÈÕ ÏÂÎç11:36:53 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½11ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:36:53 
  * @version V1.0   
  */
 package com.cmcc.sunyiwei;
@@ -12,9 +12,9 @@ package com.cmcc.sunyiwei;
  * @ClassName: Author 
  * @Description: TODO
  * @author: sunyiwei
- * @date:2015Äê3ÔÂ11ÈÕ ÏÂÎç11:36:54 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½11ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:36:54 
  */
-public class Author {
+public class Author extends Person{
 	private String name;
 	private String email;
 	
