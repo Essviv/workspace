@@ -15,7 +15,6 @@ import java.util.Map;
 import com.cmcc.vrp.util.HrefObject;
 import com.cmcc.vrp.util.PageResult;
 
-import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -135,7 +134,7 @@ public class Main {
 		params.put("url", "http://www.baidu.com");
 		params.put("text", "测试");
 		
-		IRowContentProvider<Administer> rowContentProvider = new RowContentProvider<Administer>(params, "admin.ftl");
+		IContentProvider<Administer> rowContentProvider = new RowContentProvider<Administer>(params, "admin.ftl");
 		tableObject.setRowContentProvider(rowContentProvider);
 
 		// 设置dataModel
