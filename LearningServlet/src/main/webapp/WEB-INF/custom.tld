@@ -12,13 +12,18 @@
 
 <short-name>my</short-name>
 
-<uri>com.cmcc.sunyiwei</uri>
+<uri>com.cmcc.sunyiwei.custom</uri>
 
-	<function>
-		<name>roll</name>
-		<function-class>com.cmcc.sunyiwei.RollDice</function-class>
-		<function-signature>int roll()</function-signature>
-	</function>
+<tag>
+	<name>simpleOutPut</name>
+	<tag-class>com.cmcc.sunyiwei.SimpleTagLearning</tag-class>
+	<body-content>scriptless</body-content>
 	
+	<attribute>
+		<name>movieList</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+</tag>	
 
 </taglib>
