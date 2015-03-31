@@ -29,11 +29,7 @@ public class TableObject<T> {
 	 * 对于每一个数据，根据特定的规则显示成一行
 	 */
 	private IContentProvider<T> contentProvider = null;
-	
-	/**
-	 * 输出模板的参数设置, 默认会有以T类名为key的变量
-	 */
-	private Map<String, Object> params = new HashMap<String, Object>();
+
 
 	public TableObject(List<T> data, IContentProvider<T> contentProvider){
 		this.listData = data;
@@ -53,12 +49,6 @@ public class TableObject<T> {
 		this.contentProvider = contentProvider;
 	}
 	
-	public Map<String, Object> getParams() {
-		return params;
-	}
-
-	public void setParams(Map<String, Object> params) {
-		this.params = params;
-	}
+	
 }
 

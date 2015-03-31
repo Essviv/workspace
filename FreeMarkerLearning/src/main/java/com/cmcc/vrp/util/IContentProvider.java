@@ -25,7 +25,7 @@ public interface IContentProvider<T> {
 	* @throws
 	* @author:	sunyiwei
 	 */
-	public String getHeaderText();
+	public String getHeader();
 	
 	/**
 	 * 
@@ -36,5 +36,5 @@ public interface IContentProvider<T> {
 	* @throws
 	* @author:	sunyiwei
 	 */
-	public String getRowString(T t);
+	public String getRow(T t);
 }

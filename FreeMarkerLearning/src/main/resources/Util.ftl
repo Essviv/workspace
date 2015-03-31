@@ -14,8 +14,8 @@
 <#-- 根据表格对象生成表格 -->
 <#macro getTable tableObject>
 	<table border="1">
-		<@getTableHeader tableObject.headerTextList />
-		<@getContentBody tableObject.dataList tableObject.rowContentProvider />
+		<@getTableHeader tableObject.contentProvider.getHeader() />
+		<@getContentBody tableObject.listData tableObject.contentProvider />
 	</table>
 </#macro>
 

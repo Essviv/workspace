@@ -47,7 +47,8 @@ public class MainServlet extends HttpServlet {
 //		testCookies(req, resp);
 //		testSessionListener(req, resp);
 //		testScriplessJSP(req, resp);
-		testEL(req, resp);
+//		testEL(req, resp);
+		testListener(req, resp);
 	}
 	
 	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -198,5 +199,16 @@ public class MainServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		doGet(req, resp);
+	}
+
+	private void testListener(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		getServletContext().setAttribute("author", "sunyiwei");
+		getServletContext().setAttribute("author", "patrick");
+		getServletContext().removeAttribute("author");
+		
+		req.getSession().setAttribute("author", "sunyiwei");
+		req.getSession().setAttribute("author", "patrick");
+		req.getSession().removeAttribute("author");
 	}
 }

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.Map;
 import com.cmcc.vrp.util.HrefObject;
 import com.cmcc.vrp.util.PageResult;
 
+import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -25,20 +27,66 @@ public class Main {
 			TemplateException {
 		// testPageResult();
 		// testMethod();
-		 testAdminView();
-//		testTableListObject();
+		// testAdminView();
+//		testLoop();
+		testStringTemplateLoader();
+		// testTableListObject();
 		// testMapToQueryString();
 		// testGetHref();
-//		System.out.println(new Administer().getClass().getName());
-//		System.out.println(new Administer().getClass().getSimpleName());
+		// System.out.println(new Administer().getClass().getName());
+		// System.out.println(new Administer().getClass().getSimpleName());
+	}
+
+	private static void testStringTemplateLoader() throws IOException,
+			TemplateException {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("user", "sunyiwei");
+		
+		String templateStr = "Hello ${user}";
+		Template template = new Template("name", new StringReader(templateStr),
+				new Configuration());
+		;
+		template.process(params, new OutputStreamWriter(System.out));
+
+		System.out.println("OK");
+	}
+
+	private static void testLoop() throws IOException, TemplateException {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("UTF-8");
+		configuration.setClassForTemplateLoading(Main.class, "/");
+		configuration
+				.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+
+		int nCount = 10;
+		List<User> users = new ArrayList<User>();
+		for (int i = 0; i < nCount; i++) {
+			User user = new User();
+			user.setName("Sunyiwei_" + i);
+			user.setEmail("Sunyiwei_" + i + "@chinamobile.com");
+			users.add(user);
+		}
+
+		String url = "http://www.baidu.com";
+
+		Map params = new HashMap<String, Object>();
+		params.put("users", users);
+		params.put("url", url);
+
+		Template template = configuration.getTemplate("loop.ftl");
+		Writer writer = new OutputStreamWriter(new FileOutputStream(
+				"C:\\Users\\Lenovo\\Desktop\\out.html"));
+		template.process(params, writer);
+
+		System.out.println("OK");
 	}
 
 	private static void testAdminView() throws IOException, TemplateException {
 		Configuration configuration = new Configuration();
-//		configuration.setDirectoryForTemplateLoading(new File(
-//				"src/main/resources/"));
+		// configuration.setDirectoryForTemplateLoading(new File(
+		// "src/main/resources/"));
 		configuration.setClassForTemplateLoading(Main.class, "/");
-		
+
 		configuration.setDefaultEncoding("UTF-8");
 		configuration
 				.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
@@ -104,49 +152,44 @@ public class Main {
 
 	private static void testTableListObject() throws IOException,
 			TemplateException {
-		Configuration configuration = new Configuration();
-		configuration.setDirectoryForTemplateLoading(new File(
-				"src/main/resources/"));
-		configuration.setDefaultEncoding("UTF-8");
-		configuration
-				.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-
-		TableObject<Administer> tableObject = new TableObject<Administer>();
-
-		List<String> headerList = new ArrayList<String>();
-		headerList.add("用户名");
-		headerList.add("手机号");
-		headerList.add("邮箱");
-		headerList.add("其它");
-		tableObject.setHeaderTextList(headerList);
-
-		List<Administer> administers = new ArrayList<Administer>();
-		for (int i = 0; i < 10; i++) {
-			Administer administer = new Administer();
-			administer.setUserName("sunyiwei_" + i);
-			administer.setMobilePhone("1886710210" + i);
-			administer.setEmail("sunyiwei_" + i + "@chinamobile.com");
-			administers.add(administer);
-		}
-		tableObject.setDataList(administers);
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("url", "http://www.baidu.com");
-		params.put("text", "测试");
-		
-		IContentProvider<Administer> rowContentProvider = new RowContentProvider<Administer>(params, "admin.ftl");
-		tableObject.setRowContentProvider(rowContentProvider);
-
-		// 设置dataModel
-		Map mainParams = new HashMap<String, Object>();
-		mainParams.put("tableObject", tableObject);
-
-		Template template = configuration.getTemplate("test.ftl");
-		Writer writer = new OutputStreamWriter(new FileOutputStream(
-				"C:\\Users\\Lenovo\\Desktop\\table.html"));
-		template.process(mainParams, writer);
-
-		System.out.println("OK");
+		/*
+		 * Configuration configuration = new Configuration();
+		 * configuration.setDirectoryForTemplateLoading(new File(
+		 * "src/main/resources/")); configuration.setDefaultEncoding("UTF-8");
+		 * configuration
+		 * .setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER
+		 * );
+		 * 
+		 * TableObject<Administer> tableObject = new TableObject<Administer>();
+		 * 
+		 * List<String> headerList = new ArrayList<String>();
+		 * headerList.add("用户名"); headerList.add("手机号"); headerList.add("邮箱");
+		 * headerList.add("其它"); tableObject.setHeaderTextList(headerList);
+		 * 
+		 * List<Administer> administers = new ArrayList<Administer>(); for (int
+		 * i = 0; i < 10; i++) { Administer administer = new Administer();
+		 * administer.setUserName("sunyiwei_" + i);
+		 * administer.setMobilePhone("1886710210" + i);
+		 * administer.setEmail("sunyiwei_" + i + "@chinamobile.com");
+		 * administers.add(administer); } tableObject.setDataList(administers);
+		 * 
+		 * Map<String, Object> params = new HashMap<String, Object>();
+		 * params.put("url", "http://www.baidu.com"); params.put("text", "测试");
+		 * 
+		 * IContentProvider<Administer> rowContentProvider = new
+		 * RowContentProvider<Administer>( params, "admin.ftl");
+		 * tableObject.setRowContentProvider(rowContentProvider);
+		 * 
+		 * // 设置dataModel Map mainParams = new HashMap<String, Object>();
+		 * mainParams.put("tableObject", tableObject);
+		 * 
+		 * Template template = configuration.getTemplate("test.ftl"); Writer
+		 * writer = new OutputStreamWriter(new FileOutputStream(
+		 * "C:\\Users\\Lenovo\\Desktop\\table.html"));
+		 * template.process(mainParams, writer);
+		 * 
+		 * System.out.println("OK");
+		 */
 	}
 
 	private static void testMapToQueryString() throws IOException,

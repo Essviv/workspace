@@ -5,7 +5,7 @@
  * @date:	2015年3月16日 下午7:50:14 
  * @version	V1.0   
  */
-package com.cmcc.sunyiwei;
+package com.cmcc.sunyiwei.listener;
 
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;

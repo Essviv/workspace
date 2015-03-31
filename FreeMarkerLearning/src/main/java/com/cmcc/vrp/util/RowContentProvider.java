@@ -16,8 +16,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
-
 import freemarker.log.Logger;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -33,7 +31,7 @@ import freemarker.template.TemplateExceptionHandler;
  */
 public class RowContentProvider<T> implements IContentProvider<T> {
 	private Logger logger = Logger.getLogger(getClass().getName());
-	
+
 	/**
 	 * 每一行内容的输出模板路径
 	 */
@@ -44,14 +42,17 @@ public class RowContentProvider<T> implements IContentProvider<T> {
 	 */
 	private String ftlHeaderPath = null;
 
-	
+	/**
+	 * 输出模板的参数设置, 默认会有以T类名为key的变量
+	 */
+	private Map<String, Object> params = new HashMap<String, Object>();
 
-	public RowContentProvider(String ftlHeaderPath, String ftlRowPatternPath, 
+	public RowContentProvider(String ftlHeaderPath, String ftlRowPatternPath,
 			Map<String, Object> params) {
 		this.ftlRowPatternPath = ftlRowPatternPath;
 		this.ftlHeaderPath = ftlHeaderPath;
-		
-		if(params == null){
+
+		if (params == null) {
 			params = new HashMap<String, Object>();
 		}
 		this.params = params;
@@ -65,62 +66,40 @@ public class RowContentProvider<T> implements IContentProvider<T> {
 		this.ftlRowPatternPath = ftlPath;
 	}
 
-	
-
-	@Override
-	public String getHeaderText() {
-		return templateToContent(ftlHeaderPath, params);
+	public Map<String, Object> getParams() {
+		return params;
 	}
 
-	@Override
-	public String getRowString(T t) {
-		params.put(t.getClass().getSimpleName().toLowerCase(), t);
-		return templateToContent(ftlRowPatternPath, params);
+	public void setParams(Map<String, Object> params) {
+		this.params = params;
 	}
 
-	/**
-	 * 
-	 * @Title:templateToContent
-	 * @Description: 利用模板文件和参数，生成实际的数据
-	 * @param templatePath
-	 * @param params
-	 * @return
-	 * @throws
-	 * @author: sunyiwei
+	public String getFtlHeaderPath() {
+		return ftlHeaderPath;
+	}
+
+	public void setFtlHeaderPath(String ftlHeaderPath) {
+		this.ftlHeaderPath = ftlHeaderPath;
+	}
+
+	/** 
+	 * @Title: getHeaderText 
+	 * @Description: TODO
+	 * @return 
+	 * @see com.cmcc.vrp.util.IContentProvider#getHeaderText() 
 	 */
-	private String templateToContent(String templatePath,
-			Map<String, Object> params) {
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("UTF-8");
-		try {
-			configuration.setDirectoryForTemplateLoading(new File(this.getClass().getResource("/freeMarker/").getFile()));
-		} catch (IOException e1) {
-			return null;
-		}
-		
-		configuration
-				.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+	public String getHeader() {
+		return ftlHeaderPath;
+	}
 
-		Template template;
-		try {
-			template = configuration.getTemplate(templatePath);
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-			return null;
-		}
-
-		OutputStream outputStream = new ByteArrayOutputStream();
-		Writer writer = new OutputStreamWriter(outputStream);
-		try {
-			template.process(params, writer);
-		} catch (TemplateException e) {
-			logger.error(e.getMessage());
-			return null;
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-			return null;
-		}
-
-		return outputStream.toString();
+	/** 
+	 * @Title: getRowString 
+	 * @Description: TODO
+	 * @param t
+	 * @return 
+	 * @see com.cmcc.vrp.util.IContentProvider#getRowString(java.lang.Object) 
+	 */
+	public String getRow(T t) {
+		return ftlRowPatternPath;
 	}
 }

@@ -3,10 +3,10 @@
  * @Package:com.cmcc.sunyiwei 
  * @Description: TODO
  * @author: sunyiwei  
- * @date:2015Äê3ÔÂ12ÈÕ ÏÂÎç9:47:24 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½12ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:47:24 
  * @version V1.0   
  */
-package com.cmcc.sunyiwei;
+package com.cmcc.sunyiwei.listener;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
@@ -15,7 +15,7 @@ import javax.servlet.ServletRequestListener;
  * @ClassName: TestRequestListener 
  * @Description: TODO
  * @author: sunyiwei
- * @date:2015Äê3ÔÂ12ÈÕ ÏÂÎç9:47:24 
+ * @date:2015ï¿½ï¿½3ï¿½ï¿½12ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:47:24 
  */
 public class TestRequestListener implements ServletRequestListener {
 

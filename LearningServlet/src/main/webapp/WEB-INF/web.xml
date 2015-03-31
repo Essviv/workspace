@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>mainServlet</servlet-name>
@@ -33,12 +33,7 @@
     <param-name>name</param-name>
     <param-value>sunyiwei</param-value>
   </context-param>
-  <listener>
-    <listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>com.cmcc.sunyiwei.SessionAttributeListener</listener-class>
-  </listener>
+  
   <servlet>
     <description></description>
     <display-name>CookieExample</display-name>
@@ -59,4 +54,20 @@
     <servlet-name>HobbyPage</servlet-name>
     <url-pattern>/hobbyPage.do</url-pattern>
   </servlet-mapping>
+  
+  <listener>
+  	<listener-class>com.cmcc.sunyiwei.listener.ContextAttributeListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>com.cmcc.sunyiwei.listener.ContextListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>com.cmcc.sunyiwei.listener.SessionListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>com.cmcc.sunyiwei.listener.SessionAttributeListener</listener-class>
+  </listener>
 </web-app>
