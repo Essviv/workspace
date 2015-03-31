@@ -1,0 +1,2 @@
+本地有MAVEN环境的前提下，解压，用CMD进入工程目录直接运行mvn jetty:run
+jetty成功启动后访问localhost/?name=param和localhost/index.jsp

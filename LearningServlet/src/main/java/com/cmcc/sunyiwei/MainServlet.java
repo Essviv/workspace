@@ -51,7 +51,8 @@ public class MainServlet extends HttpServlet {
 //		testSessionListener(req, resp);
 //		testScriplessJSP(req, resp);
 //		testEL(req, resp);
-		testListener(req, resp);
+//		testListener(req, resp);
+		testFilter(req, resp);
 	}
 	
 	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -229,5 +230,10 @@ public class MainServlet extends HttpServlet {
 		req.setAttribute("name", "sunyiwei");
 		req.setAttribute("name", "patrick");
 		req.removeAttribute("name");
+	}
+	
+	private void testFilter(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		System.out.println("Servlet doGet...");
 	}
 }
