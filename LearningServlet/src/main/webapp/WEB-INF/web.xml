@@ -33,12 +33,7 @@
     <param-name>name</param-name>
     <param-value>sunyiwei</param-value>
   </context-param>
-  <listener>
-    <listener-class>com.cmcc.sunyiwei.TestRequestListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>com.cmcc.sunyiwei.SessionAttributeListener</listener-class>
-  </listener>
+  
   <servlet>
     <description></description>
     <display-name>CookieExample</display-name>
@@ -59,4 +54,51 @@
     <servlet-name>HobbyPage</servlet-name>
     <url-pattern>/hobbyPage.do</url-pattern>
   </servlet-mapping>
+  <filter>
+  	<description>
+  	test filter</description>
+  	<display-name>TestFilter</display-name>
+  	<filter-name>TestFilter</filter-name>
+  	<filter-class>com.cmcc.sunyiwei.filter.TestFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>TestFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.ContextListener
+  	</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.ContextAttributeListener
+  	</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.SessionListener
+  	</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.SessionAttributeListener
+  	</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.RequestListener
+  	</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>
+  		com.cmcc.sunyiwei.listener.RequestAttributeListener
+  	</listener-class>
+  </listener>
 </web-app>
