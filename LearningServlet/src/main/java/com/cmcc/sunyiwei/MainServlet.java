@@ -42,7 +42,7 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// testSendRedirect(req, resp);
-		// testDispatch(req, resp);
+		 testDispatch(req, resp);
 		// testQRCode(req, resp);
 //		 testServletConfig(req, resp);
 		// testContextParams(req, resp);

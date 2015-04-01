@@ -1,0 +1,12 @@
+<html>
+	<head>
+		This is from decorator...
+		${head}
+	</head>
+	
+	<body>
+		This is from decorator...
+		${body}
+		<a href="${base}/test.jsp">点击我</a>
+	</body>
+</html>
