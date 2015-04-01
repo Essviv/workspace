@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<h1>这个是来自装饰器...</h1>
+		${head}
+	</head>
+	
+	<body>
+		${body}
+		
+		<a href="${base}/test.jsp">点击</a>
+	</body>
+</html>
