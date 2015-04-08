@@ -13,6 +13,25 @@
       <param-value>现在很晚了</param-value>
     </init-param>
   </servlet>
+  
+  <!-- strut test -->
+  <servlet>
+  	<servlet-name>frontController</servlet-name>
+  	<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+  	
+  	<init-param>
+  		<param-name>config</param-name>
+  		<param-value>/WEB-INF/struts-config.xml</param-value>
+  	</init-param>
+  	
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>frontController</servlet-name>
+    <url-pattern>*.google</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>redirectServlet</servlet-name>
     <servlet-class>com.cmcc.sunyiwei.RedirectServlet</servlet-class>
@@ -55,7 +74,7 @@
     <url-pattern>/hobbyPage.do</url-pattern>
   </servlet-mapping>
   
-  <filter>
+  <!-- <filter>
   	<description>
   	test filter</description>
   	<display-name>TestFilter</display-name>
@@ -75,7 +94,7 @@
   <filter-mapping>
   	<filter-name>compressFilter</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   
   <listener>
   	<listener-class>
