@@ -42,7 +42,7 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// testSendRedirect(req, resp);
-		 testDispatch(req, resp);
+//		 testDispatch(req, resp);
 		// testQRCode(req, resp);
 //		 testServletConfig(req, resp);
 		// testContextParams(req, resp);
@@ -52,7 +52,12 @@ public class MainServlet extends HttpServlet {
 //		testScriplessJSP(req, resp);
 //		testEL(req, resp);
 //		testListener(req, resp);
-		testFilter(req, resp);
+//		testFilter(req, resp);
+		 testFrontController(req, resp);
+	}
+	
+	private void testFrontController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		req.getRequestDispatcher("/input.jsp").forward(req, resp);
 	}
 	
 //	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
