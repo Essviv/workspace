@@ -1,161 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>mainServlet</servlet-name>
-    <servlet-class>com.cmcc.sunyiwei.MainServlet</servlet-class>
-    <init-param>
-      <param-name>author</param-name>
-      <param-value>sunyiwei</param-value>
-    </init-param>
-    <init-param>
-      <param-name>description</param-name>
-      <param-value>现在很晚了</param-value>
-    </init-param>
-  </servlet>
-  <servlet>
-    <servlet-name>redirectServlet</servlet-name>
-    <servlet-class>com.cmcc.sunyiwei.RedirectServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>mainServlet</servlet-name>
-    <url-pattern>/info.html</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>redirectServlet</servlet-name>
-    <url-pattern>/redirect.html</url-pattern>
-  </servlet-mapping>
-  <context-param>
-    <param-name>email</param-name>
-    <param-value>sunyiwei@chinamobile.com</param-value>
-  </context-param>
-  <context-param>
-    <param-name>name</param-name>
-    <param-value>sunyiwei</param-value>
-  </context-param>
-  
-  <servlet>
-    <description></description>
-    <display-name>CookieExample</display-name>
-    <servlet-name>CookieExample</servlet-name>
-    <servlet-class>com.cmcc.sunyiwei.CookieExample</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CookieExample</servlet-name>
-    <url-pattern>/processCookieExample.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>HobbyPage</display-name>
-    <servlet-name>HobbyPage</servlet-name>
-    <servlet-class>com.cmcc.sunyiwei.HobbyPage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HobbyPage</servlet-name>
-    <url-pattern>/hobbyPage.do</url-pattern>
-  </servlet-mapping>
-  
-  <filter>
-  	<display-name>First Filter</display-name>
-  	<filter-name>firstFilter</filter-name>
-  	<filter-class>com.cmcc.sunyiwei.filter.FirstFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-  	<filter-name>firstFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
-  <filter>
-  	<display-name>Second Filter</display-name>
-  	<filter-name>secondFilter</filter-name>
-  	<filter-class>com.cmcc.sunyiwei.filter.SecondFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-  	<filter-name>secondFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
-  <filter>
-  	<filter-name>compressFilter</filter-name>
-  	<filter-class>com.cmcc.sunyiwei.filter.CompressFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-  	<filter-name>compressFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>Archetype Created Web Application</display-name>
+	
+	<servlet>
+		<servlet-name>mainServlet</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.MainServlet</servlet-class>
+		<init-param>
+			<param-name>author</param-name>
+			<param-value>sunyiwei</param-value>
+		</init-param>
+		<init-param>
+			<param-name>description</param-name>
+			<param-value>现在很晚了</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>redirectServlet</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.RedirectServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mainServlet</servlet-name>
+		<url-pattern>/info.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>redirectServlet</servlet-name>
+		<url-pattern>/redirect.html</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+		<param-name>email</param-name>
+		<param-value>sunyiwei@chinamobile.com</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>name</param-name>
+		<param-value>sunyiwei</param-value>
+	</context-param>
 
-  
-  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.ContextListener
-  	</listener-class>
-  </listener>
-  
-  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.ContextAttributeListener
-  	</listener-class>
-  </listener>
-  
- <!--  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.SessionListener
-  	</listener-class>
-  </listener> -->
-  
-  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.SessionAttributeListener
-  	</listener-class>
-  </listener>
-  
-  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.RequestListener
-  	</listener-class>
-  </listener>
-  
-  <listener>
-  	<listener-class>
-  		com.cmcc.sunyiwei.listener.RequestAttributeListener
-  	</listener-class>
-  </listener>
-  
-  <filter>
-        <filter-name>sitemesh</filter-name>
-        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter
-        </filter-class>
-    </filter>
-    
-     <filter-mapping>
-        <filter-name>sitemesh</filter-name>
-        <url-pattern>/*</url-pattern> 
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher> 
-    </filter-mapping>
-  
-  <servlet>
-        <servlet-name>sitemesh-freemarker</servlet-name>
-        <servlet-class>
-            com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet
-        </servlet-class>
-        <init-param>
-            <param-name>TemplatePath</param-name>
-            <param-value>/</param-value>
-        </init-param>
-        <init-param>
-            <param-name>default_encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>sitemesh-freemarker</servlet-name>
-        <url-pattern>*.ftl</url-pattern>
-    </servlet-mapping>
-    
-    
+	<servlet>
+		<description></description>
+		<display-name>CookieExample</display-name>
+		<servlet-name>CookieExample</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.CookieExample</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>CookieExample</servlet-name>
+		<url-pattern>/processCookieExample.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>HobbyPage</display-name>
+		<servlet-name>HobbyPage</servlet-name>
+		<servlet-class>com.cmcc.sunyiwei.HobbyPage</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>HobbyPage</servlet-name>
+		<url-pattern>/hobbyPage.do</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<display-name>First Filter</display-name>
+		<filter-name>firstFilter</filter-name>
+		<filter-class>com.cmcc.sunyiwei.filter.FirstFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>firstFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<display-name>Second Filter</display-name>
+		<filter-name>secondFilter</filter-name>
+		<filter-class>com.cmcc.sunyiwei.filter.SecondFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>secondFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>compressFilter</filter-name>
+		<filter-class>com.cmcc.sunyiwei.filter.CompressFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>compressFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<listener>
+		<listener-class>
+			com.cmcc.sunyiwei.listener.ContextListener
+		</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			com.cmcc.sunyiwei.listener.ContextAttributeListener
+		</listener-class>
+	</listener>
+
+	<!-- <listener> <listener-class> com.cmcc.sunyiwei.listener.SessionListener 
+		</listener-class> </listener> -->
+
+	<listener>
+		<listener-class>
+			com.cmcc.sunyiwei.listener.SessionAttributeListener
+		</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			com.cmcc.sunyiwei.listener.RequestListener
+		</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			com.cmcc.sunyiwei.listener.RequestAttributeListener
+		</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>sitemesh-freemarker</servlet-name>
+		<servlet-class>
+			com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet
+		</servlet-class>
+		<init-param>
+			<param-name>TemplatePath</param-name>
+			<param-value>/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default_encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sitemesh-freemarker</servlet-name>
+		<url-pattern>*.ftl</url-pattern>
+	</servlet-mapping>
+
+	<login-config>
+		<auth-method>
+			BASIC
+		</auth-method>
+	</login-config>
+
 </web-app>

@@ -55,6 +55,19 @@ public class MainServlet extends HttpServlet {
 		testFilter(req, resp);
 	}
 	
+//	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+//		List<Movie> movieList = new ArrayList<Movie>();
+//		for (int i = 0; i < 10; i++) {
+//			Movie movie = new Movie();
+//			movie.setName("sunyiwei_" + i);
+//			movie.setGener("Gener_" + i);
+//			movieList.add(movie);
+//		}
+//		
+//		req.setAttribute("movieList", movieList);
+//		req.getRequestDispatcher("ELTest.jsp").forward(req, resp);
+//	}
+	
 	private void testEL(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		List<Movie> movieList = new ArrayList<Movie>();
 		for (int i = 0; i < 10; i++) {
