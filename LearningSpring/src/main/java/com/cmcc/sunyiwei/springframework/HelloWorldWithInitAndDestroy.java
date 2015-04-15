@@ -19,7 +19,8 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public class HelloWorldWithInitAndDestroy implements InitializingBean,
 		DisposableBean {
-
+		private String name;
+		
 	/** 
 	 * @Title: destroy 
 	 * @Description: TODO
@@ -42,6 +43,14 @@ public class HelloWorldWithInitAndDestroy implements InitializingBean,
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
 		System.err.println("afterPropertiesSet...");
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
