@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+	<bean id="javaCollection"
+		class="com.cmcc.sunyiwei.springframework.TestJavaCollection">
+		<property name="addressList">
+			<list>
+				<value>USA</value>
+				<value>China</value>
+				<value>Japan</value>
+			</list>
+		</property>	
+		
+		<property name="addressMap">
+			<map>
+				<entry key="name" value="sunyiwei" />
+				<entry key="address" value="hanzhou" />
+				<entry key="school" value="TJU" />
+			</map>
+		</property>
+		
+		<property name="addressSet">
+			<set>
+				<value>USA</value>
+				<value>China</value>
+				<value>China</value> <!-- duplicate -->
+				<value>Japan</value>
+			</set>
+		</property>
+		
+		<property name="addressProperties">
+			<props>
+				<prop key="name">patrick</prop>
+				<prop key="age">25</prop>
+				<prop key="height">180cm</prop>
+			</props>
+		</property>
+		
+		<!-- <property name="name" value="" /> -->
+		<property name="name"><null /></property>
+	</bean>
+</beans>
