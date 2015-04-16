@@ -22,7 +22,10 @@ public class SpringHelloWorld {
 	public static void main(String[] args) {
 		// testScope();
 		// testInitAndDestructMethods();
-		testAnotherInitAndDestructMethods();
+		// testAnotherInitAndDestructMethods();
+//		testBeanPostInitialization();
+//		testInheritance();
+		testInnerBeanInjection();
 	}
 
 	public static void testScope() {
@@ -59,5 +62,39 @@ public class SpringHelloWorld {
 				.getBean("helloWorldWithInitAndDestroy");
 		System.out.println(helloWorld.getName());
 		applicationContext.registerShutdownHook();
+	}
+
+	public static void testBeanPostInitialization() {
+		AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"beanPostProcessor.xml");
+		HelloWorld helloWorld = (HelloWorld) applicationContext
+				.getBean("helloWorld");
+		HelloWorldWithInitAndDestroy helloWorld_ = (HelloWorldWithInitAndDestroy) applicationContext
+				.getBean("helloWorld_");
+		System.out.println(helloWorld.getName());
+		System.out.println(helloWorld_.getName());
+		applicationContext.registerShutdownHook();
+	}
+	
+	public static void testInheritance(){
+		AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"inheritance.xml");
+		HelloEnglish helloEnglish = (HelloEnglish) applicationContext
+				.getBean("helloEnglish");
+		HelloIndia helloIndia = (HelloIndia)applicationContext.getBean("helloIndia");
+		
+		System.out.println("helloEnglish says:" + helloEnglish.getName());
+		System.out.println("helloIndia says:" + helloIndia.getName());
+		System.out.println("helloIndia says:" + helloIndia.getMessage());
+		applicationContext.registerShutdownHook();
+	}
+	
+	public static void testInnerBeanInjection(){
+		AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"innerBeanInjection.xml");
+		TextEditor textEditor = (TextEditor) applicationContext
+				.getBean("textEditor");
+
+		textEditor.spellCheck();
 	}
 }

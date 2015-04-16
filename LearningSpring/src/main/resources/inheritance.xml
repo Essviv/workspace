@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+	<bean name="helloEnglish" class="com.cmcc.sunyiwei.springframework.HelloEnglish">
+		<property name="name" value="patrick" />
+	</bean>
+	
+	<bean name="helloIndia" 
+		class="com.cmcc.sunyiwei.springframework.HelloIndia"
+		parent="helloEnglish">
+		<property name="message" value="hello India.."  />
+	</bean>
+</beans>
