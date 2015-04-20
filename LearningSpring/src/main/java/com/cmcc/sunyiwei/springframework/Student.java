@@ -1,14 +1,14 @@
-package com.cmcc.sunyiwei;
+package com.cmcc.sunyiwei.springframework;
 
 public class Student {
 	private Integer id;
-	private Integer age;
+	private int age;
 	private String name;
 	
-	public Integer getAge() {
+	public int getAge() {
 		return age;
 	}
-	public void setAge(Integer age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	public String getName() {

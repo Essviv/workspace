@@ -19,6 +19,7 @@ public class HelloWorld {
 	private String name;
 
 	public String getName() {
+		System.out.println("GetName: " + name);
 		return name;
 	}
 

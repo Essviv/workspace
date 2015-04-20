@@ -31,7 +31,10 @@ public class SpringHelloWorld {
 		// testInjectCollection();
 		// testAutowire();
 //		testJavaBasedConfiguration();
-		testCustomEvent();
+//		testCustomEvent();
+//		testAOP();
+//		testAnnotationAop();
+		testJdbc();
 	}
 
 	public static void testScope() {
@@ -157,4 +160,33 @@ public class SpringHelloWorld {
 		cep.publish();
 		ctx.stop();
 	}	
+	
+	public static void testAOP(){
+		AbstractApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("aop.xml");
+		HelloWorld helloWorld =(HelloWorld)ctx.getBean("helloWorld");
+		helloWorld.getName();
+		ctx.registerShutdownHook();
+	}
+	
+	public static void testAnnotationAop(){
+		AbstractApplicationContext ctx =
+				new ClassPathXmlApplicationContext("aspectj.xml");
+		HelloWorld helloWorld=(HelloWorld)ctx.getBean("helloWorld");
+		helloWorld.getName();
+		ctx.registerShutdownHook();
+		ctx.close();
+	}
+	
+	public static void testJdbc(){
+		AbstractApplicationContext ctx =
+				new ClassPathXmlApplicationContext("jdbc.xml");
+		SpringDAO springDAO = (SpringDAO)ctx.getBean("spingDAOImpl");
+		springDAO.create("sunyiwei", 19);
+		springDAO.create("patrick", 19);
+		springDAO.listStudents();
+		springDAO.delete(4);
+		springDAO.update(3, 25);
+		springDAO.get(2);
+	}
 }
