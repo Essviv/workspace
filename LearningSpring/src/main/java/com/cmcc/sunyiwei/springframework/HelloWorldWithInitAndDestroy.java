@@ -42,7 +42,7 @@ public class HelloWorldWithInitAndDestroy implements InitializingBean,
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
-		System.err.println("afterPropertiesSet...");
+		System.out.println("afterPropertiesSet...");
 	}
 
 	public String getName() {
