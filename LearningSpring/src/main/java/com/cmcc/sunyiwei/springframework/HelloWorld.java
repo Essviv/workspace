@@ -19,6 +19,7 @@ public class HelloWorld {
 	private String name;
 
 	public String getName() {
+		System.out.println("GetName: " + name);
 		return name;
 	}
 
@@ -27,10 +28,10 @@ public class HelloWorld {
 	}
 	
 	public void init(){
-		System.out.println("after initializing helloWorld...");
+		System.out.println("initializing helloWorld...");
 	}
 	
 	public void after(){
-		System.out.println("after destruct helloWorld...");
+		System.out.println("destructing helloWorld...");
 	}
 }
