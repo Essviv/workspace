@@ -7,11 +7,10 @@
  */
 package com.cmcc.sunyiwei;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.easymock.EasyMock;
 import org.easymock.EasyMockRunner;
-import org.easymock.EasyMockRule;
 import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.Test;

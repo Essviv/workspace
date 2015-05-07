@@ -16,7 +16,6 @@ import java.util.Map;
 import com.cmcc.vrp.util.HrefObject;
 import com.cmcc.vrp.util.PageResult;
 
-import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -28,24 +27,44 @@ public class Main {
 		// testPageResult();
 		// testMethod();
 		// testAdminView();
-//		testLoop();
-		testStringTemplateLoader();
+		// testLoop();
+		// testStringTemplateLoader();
 		// testTableListObject();
 		// testMapToQueryString();
 		// testGetHref();
 		// System.out.println(new Administer().getClass().getName());
 		// System.out.println(new Administer().getClass().getSimpleName());
+		testTemplateFile();
+	}
+
+	private static void testTemplateFile() throws IOException,
+			TemplateException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//增加对象
+		User user = new User();
+		user.setName("sunyiwei");
+		user.setEmail("sunyiwei@chinamobile.com");
+		map.put("user", user);
+
+		//增加布尔
+		map.put("bool", false);
+		
+		Configuration configuration = new Configuration();
+		configuration.setDirectoryForTemplateLoading(new File("src/main/resources"));
+		Template template = configuration.getTemplate("test.ftl");
+		template.process(map, new OutputStreamWriter(System.out));
 	}
 
 	private static void testStringTemplateLoader() throws IOException,
 			TemplateException {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("user", "sunyiwei");
-		
+
 		String templateStr = "Hello ${user}";
 		Template template = new Template("name", new StringReader(templateStr),
 				new Configuration());
-		;
+
 		template.process(params, new OutputStreamWriter(System.out));
 
 		System.out.println("OK");
