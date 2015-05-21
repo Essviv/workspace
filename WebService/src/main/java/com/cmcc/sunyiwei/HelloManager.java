@@ -28,8 +28,8 @@ public class HelloManager {
 		return "hello " + name + ", you are " + age + "years old.";
 	}
 
-	@WebMethod
-	public List<Integer> sayHelloToPerson(TestObject to) {
-		return new ArrayList<Integer>() ;
-	}
+//	@WebMethod
+//	public List<Integer> sayHelloToPerson(TestObject to) {
+//		return new ArrayList<Integer>() ;
+//	}
 }
