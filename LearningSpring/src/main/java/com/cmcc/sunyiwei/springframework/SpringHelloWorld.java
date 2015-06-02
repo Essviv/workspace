@@ -13,6 +13,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
+import com.cmcc.sunyiwei.pojo.SequenceGenerator;
+
 /**
  * @ClassName: SpringHelloWorld
  * @Description: TODO
@@ -34,7 +36,15 @@ public class SpringHelloWorld {
 //		testCustomEvent();
 //		testAOP();
 //		testAnnotationAop();
-		testJdbc();
+//		testJdbc();
+		testSG();
+	}
+	
+	public static void testSG() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"beans.xml");
+		SequenceGenerator sg = (SequenceGenerator)applicationContext.getBean("sg");
+		System.out.println(sg.getSequence());
 	}
 
 	public static void testScope() {

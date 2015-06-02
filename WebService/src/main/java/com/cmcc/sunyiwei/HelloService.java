@@ -1,5 +1,5 @@
 /**
- * @Title: 	HelloManager.java 
+ * @Title: 	HelloService.java 
  * @Package com.cmcc.sunyiwei 
  * @author:	sunyiwei
  * @date:	2015年5月20日 上午8:52:39 
@@ -7,14 +7,11 @@
  */
 package com.cmcc.sunyiwei;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 /**
- * @ClassName: HelloManager
+ * @ClassName: HelloService
  * @Description: TODO
  * @author: sunyiwei
  * @date: 2015年5月20日 上午8:52:39
@@ -22,7 +19,7 @@ import javax.jws.WebService;
  */
 
 @WebService
-public class HelloManager {
+public class HelloService {
 	@WebMethod
 	public String sayHello(String name, int age) {
 		return "hello " + name + ", you are " + age + "years old.";
